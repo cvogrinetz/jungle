@@ -8,6 +8,4 @@ class Admin::DashboardController < ApplicationController
       # puts "PRODUCT COUNT----------#{@products.count}"
       # puts "CATEGORY COUNT----------#{@category.count}"
     end
-    
-
 end
