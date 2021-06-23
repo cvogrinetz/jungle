@@ -4,12 +4,8 @@
     <h1>Order #<%= @order.id %></h1>
   </header>
 
-  <div class="order-summary jumbotron">
-    <h4>Thank you for your order!</h4>
-  </div>
-<% if enhanced_cart == [] %>
-    <%= render 'empty' %>
-  <% elsif enhanced_cart != [] %>
+  <h3>Ordered by: <%= @order.email %>  </h3>
+
     <div class="panel panel-default items">
       <table class="table table-bordered">
         <thead>
@@ -21,9 +17,10 @@
           </tr>
         </thead>
         <tbody>
-          <% enhanced_cart.each do |item| %>
-            <%= render 'item', product: item[:product], quantity: item[:quantity].to_i %>
+          <% @order.line_items.each do |item| %>
+            <%= render 'item', product: item.product, quantity: item.quantity %>
           <% end %>
+
         </tbody>
         <tfoot>
           <tr>
@@ -37,9 +34,4 @@
         </tfoot>
       </table>
     </div>
-
-  <%= link_to "Continue Shopping", root_path, class: 'btn btn-lg btn-primary' %>
-
 </section>
-
-<% end %>
