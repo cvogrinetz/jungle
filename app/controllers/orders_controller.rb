@@ -43,7 +43,7 @@ class OrdersController < ApplicationController
     )
 
     order.total = 0
-
+    
     enhanced_cart.each do |entry|
       product = entry[:product]
       quantity = entry[:quantity]
