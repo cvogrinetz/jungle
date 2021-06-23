@@ -1,7 +1,10 @@
 class Admin::CategoriesController < ApplicationController
 
   def index
-    @category = Category.order(id: :desc).all
+    @categories = Category.order(id: :desc).all
+    puts "CATEGORY--------#{@categories.inspect}"
+    puts "LIST OF CATEGORIES--------#{@categories}"
+
   end
 
   def new
@@ -17,4 +20,14 @@ class Admin::CategoriesController < ApplicationController
       render :new
     end
   end
+
+  private
+
+  def category_params
+    params.require(:categories).permit(
+      :name,
+    )
+  end
 end
+
+
