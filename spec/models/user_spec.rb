@@ -80,5 +80,27 @@ RSpec.describe User, type: :model do
       expect(session).to eq(user)
     end
 
+    it 'should pass even with whitespace around email' do
+      user = User.create(name: "Bitter",
+        lastName: "Funk",
+        email: "bfa@example.com",
+        password: "password",
+        password_confirmation: "password",
+      )
+      session = User.authenticate_with_credentials('  bfa@example.com', 'password')
+      expect(session).to eq(user)
+    end
+
+    it 'should pass if even with case sensitive input' do
+      user = User.create(name: "Bitter",
+        lastName: "Funk",
+        email: "bfa@example.com",
+        password: "password",
+        password_confirmation: "password",
+      )
+      session = User.authenticate_with_credentials('BFA@EXAMPLE.com', 'password')
+      expect(session).to eq(user)
+    end
+
   end
 end
